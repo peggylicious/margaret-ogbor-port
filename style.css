@@ -1,0 +1,122 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+}
+input[type="checkbox"]{
+    position: absolute;
+}
+.left-sidebar{
+    position: absolute;
+    background-color: brown;
+    width: 100vw;
+    z-index: 10;
+}
+header{
+    background-color: blue;
+    position: relative;
+    overflow: hidden;
+    height: 10vh;
+}
+.hamburger, .logo{
+    position: relative;
+    top: 50%;
+    margin-top: -25px; /* Centers div*/
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    width: 50px;
+    background-color: red;
+    margin-left: 50px;
+    font-size: 0; /* Removes white-space from inline-block div */
+}
+
+.hamburger span{
+    display: inline-block;
+    height: 3px;
+    width: 20px;
+    background-color: white;
+    position: relative;
+    left: 50%; /* Moves child element 50% to the left */
+    margin-left: -10px; /* This measurerment is half the width of child element. The negative margin moves the element to the left and helps set the div exactly at the center */
+}
+
+span:before, span:after{
+    height: 3px;
+    width: 20px;
+    position: absolute;
+    background-color: white;
+    content: "";
+}
+span:before{
+    top: 6px;
+}
+span:after{
+    top: -6px;
+}
+
+.offcanvas{
+    height: 90vh;
+    width: 320px;
+    position: absolute;
+    background-color: green;
+    left: -320px;
+    transition: left 0.5s;
+}
+
+.container{
+    position: relative;
+    left: 0;
+    height: 100vh;
+    background-color: yellow;
+}
+
+input#toggle-ham:checked ~ .left-sidebar .offcanvas{
+    left: 0;
+}
+
+
+@media only screen and (min-width: 500px){
+    .container{
+        left: 80px;
+        transition: left 0.5s;
+    }
+    .left-sidebar{
+        /* position: static; */
+        height: 100vh;
+        width: auto;
+    }
+    header{
+        height: inherit;
+        width: 80px;
+        overflow: visible;
+        position: absolute;
+        z-index: 10;
+        /* float: left; */
+    }
+    .hamburger{
+        left: 50%;
+        margin: 0;
+        transform: translate(-50%, -50%);
+    }
+    .logo{
+        display: none;
+    }
+    .offcanvas{
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        transition: left 0.5s;
+    }
+    input#toggle-ham:checked ~ .left-sidebar .offcanvas{
+        transform: translate3d(0, 0, 0);
+        left: 80px;
+    }
+    input#toggle-ham:checked ~ .container{
+        left: 400px;
+        transition: left 0.5s;
+    }
+}
